@@ -79,12 +79,12 @@
       <div class="col-10">
         <div class="container-fluid">
           <div class="row m-2">
-            {% for i in place_nums %}
+            {% for store in store_list %}
               <div class="col-4 grid-item p-0 m-1">
                 <div class="grid-item-img">
                   <img src="https://picsum.photos/id/684/280/200" alt="">
                 </div>
-                <label for="">餐廳{{ i }}</label>
+                <label for="">{{ store.name }}</label>
               </div>
 
             {% endfor %}
