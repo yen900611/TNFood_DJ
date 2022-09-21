@@ -25,3 +25,13 @@ def index(request):
         'food/index.html',
         {'store_list': places, 'photo': photo.file}
     )
+
+
+def place_introduction(request, place_id: int):
+    place = Place.objects.get(id=place_id)
+    # TODO
+    return render(
+        request,
+        'food/place_introduction.html',
+        {'store': place}
+    )
