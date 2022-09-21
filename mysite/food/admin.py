@@ -4,7 +4,6 @@ from .models import Photo
 
 # Register your models here.
 from .models import Place
-class PhotoAdmin(admin.ModelAdmin):
-    pass
-admin.site.register(Photo, PhotoAdmin)
-admin.site.register(Place)
+
+admin.site.register(Photo, admin.ModelAdmin)
+admin.site.register(Place,admin.ModelAdmin)

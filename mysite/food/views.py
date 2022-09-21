@@ -18,8 +18,10 @@ from .models import Photo
 
 # Create your views here.
 def index(request):
-    # return HttpResponse("Hello food!")
     photo = Photo.objects.first()
-    # return render(request, 'food/index.html', {'place_nums': range(6), })
-    return render(request, 'food/index.html', {'store_list': Place.objects.all(),'photo':photo.file }
-                  )
+    places = Place.objects.all()
+    return render(
+        request,
+        'food/index.html',
+        {'store_list': places, 'photo': photo.file}
+    )

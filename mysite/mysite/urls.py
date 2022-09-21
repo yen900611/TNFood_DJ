@@ -24,8 +24,9 @@ def index(request):
     return HttpResponse("Hello World!")
 
 
-urlpatterns = [
-                  path('admin/', admin.site.urls),
-                  path('food/', include('food.urls')),
-                  path('', index)
-              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns = \
+    [
+        path('admin/', admin.site.urls),
+        path('food/', include('food.urls')),
+        path('', index)
+    ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
