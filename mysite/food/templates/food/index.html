@@ -44,8 +44,6 @@
 
       .grid-item > .grid-item-img {
 
-          background: #D9D9D9;
-          opacity: 0.6;
           border: 3px solid #AE3338;
           /* width: 100%; */
 
@@ -82,7 +80,7 @@
             {% for store in store_list %}
               <div class="col-4 grid-item p-0 m-1">
                 <div class="grid-item-img">
-                  <img src="https://picsum.photos/id/684/280/200" alt="">
+                  <img class="p-1" style="max-width:280px;max-height: 200px" src="{{ photo.url }}" alt="">
                 </div>
                 <label for="">{{ store.name }}</label>
               </div>

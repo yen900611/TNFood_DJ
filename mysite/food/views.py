@@ -13,9 +13,15 @@ from .models import Place
 #         context['some_data'] = 'This is just some data'
 #         return context
 
+from .models import Photo
+
 
 # Create your views here.
 def index(request):
-    # return HttpResponse("Hello food!")
-    return render(request, 'food/index.html', {'store_list': Place.objects.all(), }
-                  )
+    photo = Photo.objects.first()
+    places = Place.objects.all()
+    return render(
+        request,
+        'food/index.html',
+        {'store_list': places, 'photo': photo.file}
+    )
