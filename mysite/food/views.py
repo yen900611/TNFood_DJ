@@ -29,9 +29,14 @@ def index(request):
 
 def place_introduction(request, place_id: int):
     place = Place.objects.get(id=place_id)
-    # TODO
+    name = place.name
+    address = place.address
+    phone_number = place.phone_number
+    web_site = place.web_site
+    introduction = place.introduction
     return render(
         request,
         'food/place_introduction.html',
-        {'store': place}
+        {'store': place, 'name': name, 'address': address, 'phone_number': phone_number, 'web_site': web_site,
+         'introduction': introduction},
     )

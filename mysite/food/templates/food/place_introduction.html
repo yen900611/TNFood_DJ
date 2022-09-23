@@ -175,17 +175,16 @@
         <div class="col-4 mt-3 p-3">
           <div><span class="material-icons">
               local_offer
-            </span><label for="">{{ store.name }}</label></div>
+            </span><label for="">{{ name }}</label></div>
           <div><span class="material-icons">
               location_on
-            </span><label for="">地址</label></div>
-{#          TODO 嵌入資料#}
+            </span><label for="">{{ address }}</label></div>
           <div><span class="material-icons">
               phone
-            </span><label for="">電話</label></div>
+            </span><label for="">{{ phone_number }}</label></div>
           <div><span class="material-icons">
               open_in_new
-            </span><label for="">網址</label></div>
+            </span><label for="">{{ web_site }}</label></div>
 
         </div>
         <div class="col-4">
@@ -193,9 +192,7 @@
         </div>
         <div class="col-4">
           <label for="">店家簡介</label>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In quidem ratione recusandae illum
-            nostrum quisquam sit nihil libero laudantium culpa molestias quae eveniet, tempore, magnam
-            commodi sequi quaerat temporibus deserunt.</p>
+          <p>{{ introduction }}</p>
         </div>
       </div>
     </div>
