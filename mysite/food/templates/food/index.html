@@ -78,12 +78,16 @@
         <div class="container-fluid">
           <div class="row m-2">
             {% for store in store_list %}
+              {# 使用模板語言 嵌入URL #}
+              <a href="{% url 'food_introduction' place_id=store.id %}">
+
               <div class="col-4 grid-item p-0 m-1">
                 <div class="grid-item-img">
                   <img class="p-1" style="max-width:280px;max-height: 200px" src="{{ photo.url }}" alt="">
                 </div>
                 <label for="">{{ store.name }}</label>
               </div>
+              </a>
 
             {% endfor %}
 
