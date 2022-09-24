@@ -116,9 +116,13 @@
             <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel">
               <div class="carousel-inner w-100" role="listbox">
 {#              {{ photo_lst }}#}
-                {% for photo in photo_list %} {# 本來是想用for loop撈出資料，但更新後版面會整個跑掉 #}
+                {% for photo in photo_list  %} {# 本來是想用for loop撈出資料，但更新後版面會整個跑掉 #}
+                  {% if forloop.counter == 1 %}
+                    <div class="carousel-item active">
+                  {% else %}
+                    <div class="carousel-item ">
+                  {% endif %}
 
-                  <div class="carousel-item active">
                     <div class="col-md-4">
                       <div class="card card-body">
                         <img class="img-fluid" src="{{ photo.file.url }}">

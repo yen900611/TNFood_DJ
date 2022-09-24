@@ -22,7 +22,7 @@ def index(request):
     places = Place.objects.all()
     return render(
         request,
-        'food/index.{html',
+        'food/index.html',
         {'store_list': places, 'photo': photo.file}
     )
 
