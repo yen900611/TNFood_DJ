@@ -12,40 +12,40 @@
 
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <style>
-    @media (max-width: 768px) {
-      .carousel-inner .carousel-item>div {
-        display: none;
+      @media (max-width: 768px) {
+          .carousel-inner .carousel-item > div {
+              display: none;
+          }
+
+          .carousel-inner .carousel-item > div:first-child {
+              display: block;
+          }
       }
 
-      .carousel-inner .carousel-item>div:first-child {
-        display: block;
-      }
-    }
-
-    .carousel-inner .carousel-item.active,
-    .carousel-inner .carousel-item-next,
-    .carousel-inner .carousel-item-prev {
-      display: flex;
-    }
-
-    /* display 3 */
-    @media (min-width: 768px) {
-
-      .carousel-inner .carousel-item-right.active,
-      .carousel-inner .carousel-item-next {
-        transform: translateX(33.333%);
-      }
-
-      .carousel-inner .carousel-item-left.active,
+      .carousel-inner .carousel-item.active,
+      .carousel-inner .carousel-item-next,
       .carousel-inner .carousel-item-prev {
-        transform: translateX(-33.333%);
+          display: flex;
       }
-    }
 
-    .carousel-inner .carousel-item-right,
-    .carousel-inner .carousel-item-left {
-      transform: translateX(0);
-    }
+      /* display 3 */
+      @media (min-width: 768px) {
+
+          .carousel-inner .carousel-item-right.active,
+          .carousel-inner .carousel-item-next {
+              transform: translateX(33.333%);
+          }
+
+          .carousel-inner .carousel-item-left.active,
+          .carousel-inner .carousel-item-prev {
+              transform: translateX(-33.333%);
+          }
+      }
+
+      .carousel-inner .carousel-item-right,
+      .carousel-inner .carousel-item-left {
+          transform: translateX(0);
+      }
   </style>
   <style>
       footer {
@@ -92,117 +92,86 @@
 </head>
 
 <body>
-  <header>
-    <div class="p-3">
+<header>
+  <div class="p-3">
 
-      <div class="m-auto mt-3">
-        <!-- The form -->
-        <form class="">
-          <input type="text" placeholder="想找什麼呢？" name="search">
-          <button type="submit"><span class="material-icons">
+    <div class="m-auto mt-3">
+      <!-- The form -->
+      <form class="">
+        <input type="text" placeholder="想找什麼呢？" name="search">
+        <button type="submit"><span class="material-icons">
             search
           </span></button>
-        </form>
-      </div>
+      </form>
     </div>
-  </header>
-  <main>
-    <div class="container-fluid border-bottom">
-      <div class="row ">
+  </div>
+</header>
+<main>
+  <div class="container-fluid border-bottom">
+    <div class="row ">
 
-<!--            {% for photo in photo_list %} {# 本來是想用for loop撈出資料，但更新後版面會整個跑掉 #}-->
-        <div class="col-12">
-          <div class="container text-center my-3">
-            <div class="row mx-auto my-auto">
-              <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel">
-                <div class="carousel-inner w-100" role="listbox">
+      <div class="col-12">
+        <div class="container text-center my-3">
+          <div class="row mx-auto my-auto">
+            <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel">
+              <div class="carousel-inner w-100" role="listbox">
+{#              {{ photo_lst }}#}
+                {% for photo in photo_list %} {# 本來是想用for loop撈出資料，但更新後版面會整個跑掉 #}
+
                   <div class="carousel-item active">
                     <div class="col-md-4">
                       <div class="card card-body">
-                        <img class="img-fluid" src="https://picsum.photos/400/400/?random=5">
+                        <img class="img-fluid" src="{{ photo.file.url }}">
+                        <label for="">{{ photo.name }}</label>
                       </div>
                     </div>
                   </div>
-                  <div class="carousel-item">
-                    <div class="col-md-4">
-                      <div class="card card-body">
-                        <img class="img-fluid" src="https://picsum.photos/400/400/?random=6">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="carousel-item">
-                    <div class="col-md-4">
-                      <div class="card card-body">
-                        <img class="img-fluid" src="{{ photo.url }}">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="carousel-item">
-                    <div class="col-md-4">
-                      <div class="card card-body">
-                        <img class="img-fluid" src="https://picsum.photos/400/400/?random=3">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="carousel-item">
-                    <div class="col-md-4">
-                      <div class="card card-body">
-                        <img class="img-fluid" src="https://picsum.photos/400/400/?random=2">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="carousel-item">
-                    <div class="col-md-4">
-                      <div class="card card-body">
-                        <img class="img-fluid" src="https://picsum.photos/400/400/?random=1">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <a class="carousel-control-prev w-auto" href="#recipeCarousel" role="button" data-slide="prev">
-                  <span class="carousel-control-prev-icon bg-dark border border-dark rounded-circle"
-                    aria-hidden="true"></span>
-                  <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next w-auto" href="#recipeCarousel" role="button" data-slide="next">
-                  <span class="carousel-control-next-icon bg-dark border border-dark rounded-circle"
-                    aria-hidden="true"></span>
-                  <span class="sr-only">Next</span>
-                </a>
-<!--                {% endfor %}-->
+                {% endfor %}
               </div>
+              <a class="carousel-control-prev w-auto" href="#recipeCarousel" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon bg-dark border border-dark rounded-circle"
+                        aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next w-auto" href="#recipeCarousel" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon bg-dark border border-dark rounded-circle"
+                        aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="col-4 mt-3 p-3">
-          <div><span class="material-icons">
+      <div class="col-4 mt-3 p-3">
+        <div><span class="material-icons">
               local_offer
             </span><label for="">{{ store.name }}</label></div>
-          <div><span class="material-icons">
+        <div><span class="material-icons">
               location_on
             </span><label for="">{{ store.address }}</label></div>
-          <div><span class="material-icons">
+        <div><span class="material-icons">
               phone
             </span><label for="">{{ store.phone_number }}</label></div>
-          <div><span class="material-icons">
+        <div><span class="material-icons">
               open_in_new
             </span><label for="">{{ store.web_site }}</label></div>
 
-        </div>
-        <div class="col-4">
-          <!-- <div></div> -->
-        </div>
-        <div class="col-4">
-          <label for="">店家簡介</label>
-          <p>{{ store.introduction }}</p>
-        </div>
+      </div>
+      <div class="col-4">
+        <!-- <div></div> -->
+      </div>
+      <div class="col-4">
+        <label for="">店家簡介</label>
+        <p>{{ store.introduction }}</p>
       </div>
     </div>
-  </main>
-  <footer>
+  </div>
+</main>
+<footer>
 
-  </footer>
+</footer>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -229,9 +198,13 @@
       next.children(':first-child').clone().appendTo($(this));
     }
   });
+
+
 </script>
 <script>
     // add script here
+
+
 </script>
 
 </html>

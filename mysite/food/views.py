@@ -22,20 +22,21 @@ def index(request):
     places = Place.objects.all()
     return render(
         request,
-        'food/index.html',
+        'food/index.{html',
         {'store_list': places, 'photo': photo.file}
     )
 
 
 def place_introduction(request, place_id: int):
     place = Place.objects.get(id=place_id)
-    photo_list = Photo.objects.filter(place = place)
+    photo_list = Photo.objects.filter(place = place).all()
+    print(photo_list)
     # photo = Photo.objects.filter(id = place_id)
     return render(
         request,
         'food/place_introduction.html',
         {'store': place,
-         'photo_lst':photo_list,
+         'photo_list':photo_list,
          # 'photo':photo,
          },
     )

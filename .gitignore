@@ -3,9 +3,9 @@
 *.pot
 *.pyc
 __pycache__
-db.sqlite3
+mysite/db.sqlite3
 media/*
-static/
+mysite/static/
 tmp/
 # Backup files # 
 *.bak 
