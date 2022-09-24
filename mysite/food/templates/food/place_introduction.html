@@ -109,6 +109,8 @@
   <main>
     <div class="container-fluid border-bottom">
       <div class="row ">
+
+<!--            {% for photo in photo_list %} {# 本來是想用for loop撈出資料，但更新後版面會整個跑掉 #}-->
         <div class="col-12">
           <div class="container text-center my-3">
             <div class="row mx-auto my-auto">
@@ -131,7 +133,7 @@
                   <div class="carousel-item">
                     <div class="col-md-4">
                       <div class="card card-body">
-                        <img class="img-fluid" src="https://picsum.photos/400/400/?random=4">
+                        <img class="img-fluid" src="{{ photo.url }}">
                       </div>
                     </div>
                   </div>
@@ -167,6 +169,7 @@
                     aria-hidden="true"></span>
                   <span class="sr-only">Next</span>
                 </a>
+<!--                {% endfor %}-->
               </div>
             </div>
           </div>
@@ -175,16 +178,16 @@
         <div class="col-4 mt-3 p-3">
           <div><span class="material-icons">
               local_offer
-            </span><label for="">{{ name }}</label></div>
+            </span><label for="">{{ store.name }}</label></div>
           <div><span class="material-icons">
               location_on
-            </span><label for="">{{ address }}</label></div>
+            </span><label for="">{{ store.address }}</label></div>
           <div><span class="material-icons">
               phone
-            </span><label for="">{{ phone_number }}</label></div>
+            </span><label for="">{{ store.phone_number }}</label></div>
           <div><span class="material-icons">
               open_in_new
-            </span><label for="">{{ web_site }}</label></div>
+            </span><label for="">{{ store.web_site }}</label></div>
 
         </div>
         <div class="col-4">
@@ -192,7 +195,7 @@
         </div>
         <div class="col-4">
           <label for="">店家簡介</label>
-          <p>{{ introduction }}</p>
+          <p>{{ store.introduction }}</p>
         </div>
       </div>
     </div>
