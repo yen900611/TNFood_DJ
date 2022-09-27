@@ -9,11 +9,14 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import os
 from pathlib import Path
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
+
+load_dotenv(Path.joinpath(BASE_DIR, '.env'))  # take environment variables from .env.
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -21,10 +24,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-twgeu(3@g_6i2%s^@)#duxz36*a6*@pncs=*60n=%sp_)bm!p1'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if os.getenv('DEBUG') == 'False':
+    # SECURITY WARNING: don't run with debug turned on in production!
+    DEBUG = False
+else:
+    DEBUG = True
 
-ALLOWED_HOSTS = []
+LOGIN_URL = '/food-admin/'
+ALLOWED_HOSTS = [
+    'tnfood.pythonanywhere.com',
+    '127.0.0.1'
+]
 
 # Application definition
 
@@ -111,7 +121,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT='static/'
+STATIC_ROOT = 'mysite/static/'
 MEDIA_ROOT = Path.joinpath(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
@@ -119,3 +129,6 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+import mimetypes
+
+mimetypes.add_type("text/css", ".css", True)

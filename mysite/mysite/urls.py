@@ -26,7 +26,7 @@ def index(request):
 
 urlpatterns = \
     [
-        path('admin/', admin.site.urls),
+        path('food-admin/', admin.site.urls),
         path('food/', include('food.urls')),
         path('', index)
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
