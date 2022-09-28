@@ -1,17 +1,26 @@
 {% extends 'food/base.html' %}
 
 {% block title %} 台南不需要米其林 {% endblock %}
+{% block custom_style %}
+  <style>
 
+      .template-sidebar {
+          min-height: 600px;
+          background-color: #FFFFFF;
+          border: #AE3338 5px solid;
+      }
+  </style>
+{% endblock %}
 {% block main %}
 
   <div class="container-fluid border-bottom">
     <div class="row ">
-      <div class="col-2 border-right template-sidebar">
-
+      <div class="col-3 border-right template-sidebar m-1">
+      {% include 'food/form_filter.html' %}
       </div>
-      <div class="col-10">
+      <div class="col-8">
         <div class="container-fluid">
-          <div class="row m-2">
+          <div class="row ">
             {% for store in store_list %}
               {# 使用模板語言 嵌入URL #}
               <a href="{% url 'food_introduction' place_id=store.id %}">
