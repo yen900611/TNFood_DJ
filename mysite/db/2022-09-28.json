@@ -1,14 +1,21 @@
 [
 {
+  "model": "food.tag",
+  "pk": 2,
+  "fields": {
+    "name": "拉麵"
+  }
+},
+{
   "model": "food.place",
   "pk": 1,
   "fields": {
     "name": "覺丸拉麵",
-    "address": "台南市東區東興路275號",
+    "address": "701台南市東區東興路275號",
     "phone_number": "No phone number",
-    "web_site": "https://www.facebook.com/juewanramen/",
-    "introduction": "濃郁的豚骨拉麵，注意老闆的店規",
-    "pub_date": "2022-09-21T03:49:10Z"
+    "web_site": "No web site",
+    "introduction": "不用問去吃就對了",
+    "pub_date": "2022-09-21T09:56:33Z"
   }
 },
 {
@@ -28,8 +35,8 @@
   "pk": 1,
   "fields": {
     "name": "拉麵",
-    "file": "photos/IMG_8553.png",
-    "place": 1
+    "file": "photos/307085610_3309130262696114_2937548049950741795_n.png",
+    "place": null
   }
 },
 {
@@ -57,6 +64,14 @@
     "name": "厚切豬排定食",
     "file": "photos/81916.jpg",
     "place": 2
+  }
+},
+{
+  "model": "food.tag_management",
+  "pk": 2,
+  "fields": {
+    "place": 1,
+    "tags": 2
   }
 }
 ]
