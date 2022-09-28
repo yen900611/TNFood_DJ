@@ -17,11 +17,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.http import HttpResponse
+from django.shortcuts import redirect
 from django.urls import path, include
 
 
 def index(request):
-    return HttpResponse("Hello World!")
+    return redirect('/food/')
 
 
 urlpatterns = \
