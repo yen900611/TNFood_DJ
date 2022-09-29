@@ -4,6 +4,14 @@ from django.db import models
 # Create your models here.
 class Tag(models.Model):
     name = models.CharField(max_length=10)
+    style = models.CharField(max_length=30, null=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Device(models.Model):
+    name = models.CharField(max_length=20)
 
     def __str__(self):
         return self.name
@@ -32,3 +40,8 @@ class Photo(models.Model):
 class Tag_Management(models.Model):
     place = models.ForeignKey(Place, on_delete=models.SET_NULL, null=True)
     tags = models.ForeignKey(Tag, on_delete=models.SET_NULL, null=True)
+
+
+class Device_Management(models.Model):
+    place = models.ForeignKey(Place, on_delete=models.CASCADE)
+    devices = models.ForeignKey(Device, on_delete=models.CASCADE)
