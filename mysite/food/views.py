@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import generic
-from .models import Place
+from .models import Place, Photo, Tag
 
 # class StoreListView(generic.ListView):
 #     model = Store
@@ -26,6 +26,10 @@ def index(request):
         {'store_list': places, 'photo': photo.file}
     )
 
+def form_filter(request):
+    tags = Tag.objects.all()
+    return render(request,'food/form_filter', {'tags':tags})
+
 
 def place_introduction(request, place_id: int):
     place = Place.objects.get(id=place_id)
@@ -33,10 +37,12 @@ def place_introduction(request, place_id: int):
     # photo_list = Photo.objects.filter(place = place).all()
     # 方法二
     photo_list = place.photo_set.all()
+    tag_list = place.tags
     return render(
         request,
         'food/place_introduction.html',
         {'store': place,
          'photo_list':photo_list,
+         'tags':tag_list
          },
     )
