@@ -1,33 +1,14 @@
 <h4>今天想吃什麼呢？</h4>
 <form action="/food" method="get">
   <div><label for="">料理分類</label></div>
-  <div class="form-check form-check-inline">
-    <input class="form-check-input" type="checkbox" name="food_style" value="Chinese">
-    <label class="form-check-label" for="inlineCheckbox1">中式</label>
-  </div>
-  <div class="form-check form-check-inline">
-    <input class="form-check-input" type="checkbox" name="food_style" value="Japan">
-    <label class="form-check-label" for="inlineCheckbox2">日式</label>
-  </div>
-  <div class="form-check form-check-inline">
-    <input class="form-check-input" type="checkbox" name="food_style" value="Western">
-    <label class="form-check-label" for="inlineCheckbox2">美式</label>
-  </div>
-  <div class="form-check form-check-inline">
-    <input class="form-check-input" type="checkbox" name="food_style" value="Vietnam">
-    <label class="form-check-label" for="inlineCheckbox2">越式</label>
-  </div>
-  <br>
-
-  <div><label for="">素食種類</label></div>
-  <div class="form-check form-check-inline">
-    <input class="form-check-input" type="checkbox" name="veg_style" value="vegan">
-    <label class="form-check-label" for="inlineCheckbox2">全素</label>
-  </div>
-  <div class="form-check form-check-inline">
-    <input class="form-check-input" type="checkbox" name="veg_style" value="vegetarian">
-    <label class="form-check-label" for="inlineCheckbox2">蛋奶素</label>
-  </div>
+    <ul>
+      {% for tag in tags %}
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="food_style" value="Raman">
+            <label class="form-check-label" for="inlineCheckbox1">{{tag.name}}</label>
+        </div>
+      {% endfor %}
+    </ul>
   <br>
   <button class="btn btn-outline-success" type="submit">開始搜尋</button>
 </form>

@@ -1,0 +1,78 @@
+[
+{
+  "model": "food.tag",
+  "pk": 2,
+  "fields": {
+    "name": "拉麵",
+    "style": null
+  }
+},
+{
+  "model": "food.place",
+  "pk": 1,
+  "fields": {
+    "name": "覺丸拉麵",
+    "address": "701台南市東區東興路275號",
+    "phone_number": "No phone number",
+    "web_site": "No web site",
+    "introduction": "不用問去吃就對了",
+    "pub_date": "2022-09-21T09:56:33Z"
+  }
+},
+{
+  "model": "food.place",
+  "pk": 2,
+  "fields": {
+    "name": "櫻之庭食堂",
+    "address": "台南市北區勝利路206巷8號",
+    "phone_number": "(06)2082068",
+    "web_site": "https://www.facebook.com/profile.php?id=100063935765016",
+    "introduction": "環境舒適，食物美味的日式定食",
+    "pub_date": "2022-09-23T11:16:42Z"
+  }
+},
+{
+  "model": "food.photo",
+  "pk": 1,
+  "fields": {
+    "name": "拉麵",
+    "file": "photos/307085610_3309130262696114_2937548049950741795_n.png",
+    "place": null
+  }
+},
+{
+  "model": "food.photo",
+  "pk": 2,
+  "fields": {
+    "name": "店景",
+    "file": "photos/IMG_8546.png",
+    "place": 1
+  }
+},
+{
+  "model": "food.photo",
+  "pk": 4,
+  "fields": {
+    "name": "就是貓啊怎麼了",
+    "file": "photos/81917.jpg",
+    "place": 2
+  }
+},
+{
+  "model": "food.photo",
+  "pk": 5,
+  "fields": {
+    "name": "厚切豬排定食",
+    "file": "photos/81916.jpg",
+    "place": 2
+  }
+},
+{
+  "model": "food.tag_management",
+  "pk": 2,
+  "fields": {
+    "place": 1,
+    "tags": 2
+  }
+}
+]
