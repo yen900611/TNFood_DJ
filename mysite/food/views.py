@@ -18,24 +18,20 @@ from .models import Photo
 
 # Create your views here.
 def index(request):
-    # places = []
-    # for place in Place.objects.all():
-    #     places.append({'place': place, 'id':place.id, 'photo': place.photo_set.first()})
-    photos = Photo.objects.all()
     places = Place.objects.all()
+    photos = Photo.objects.all()
     tags = Tag.objects.all()
+    print(type(request.GET))
+    try:
+        if request.GET['food_style']:
+            places = Place.objects.filter(tags__style=request.GET['food_style'])
+    except Exception:
+        pass
     return render(
         request,
         'food/index.html',
         {'store_list': places, 'photos': photos, 'tags': tags}
     )
-
-
-#
-# def form_filter(request):
-#     tags = Tag.objects.all()
-#     return render(request, 'food/form_filter.html', {'tags': tags})
-
 
 def place_introduction(request, place_id: int):
     place = Place.objects.get(id=place_id)
