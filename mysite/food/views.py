@@ -18,15 +18,18 @@ from .models import Photo
 
 # Create your views here.
 def index(request):
-    photo = Photo.objects.first()
+    # places = []
+    # for place in Place.objects.all():
+    #     places.append({'place': place, 'id':place.id, 'photo': place.photo_set.first()})
+    photos = Photo.objects.all()
     places = Place.objects.all()
-    # tags = Tag.objects.first()
     tags = Tag.objects.all()
     return render(
         request,
         'food/index.html',
-        {'store_list': places, 'photo': photo.file, 'tags': tags}
+        {'store_list': places, 'photos': photos, 'tags': tags}
     )
+
 
 #
 # def form_filter(request):
@@ -41,7 +44,7 @@ def place_introduction(request, place_id: int):
     # 方法二
     photo_list = place.photo_set.all()
     # tag_list = Tag_Management.objects.first()
-    tag_list = Tag_Management.objects.filter(place = place)
+    tag_list = Tag_Management.objects.filter(place=place)
     return render(
         request,
         'food/place_introduction.html',

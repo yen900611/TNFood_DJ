@@ -29,6 +29,10 @@ class Place(models.Model):
     def __str__(self):
         return self.name
 
+    def get_sample_by_order(self):
+        if self.photo_set.count():
+            return self.photo_set.first().file
+
 
 class Photo(models.Model):
     name = models.CharField(max_length=255)
