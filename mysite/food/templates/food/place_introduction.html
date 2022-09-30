@@ -97,8 +97,13 @@
 
         </div>
         <div class="col-4">
-          <h5>料理類型</h5>
-          <span class="badge badge-pill badge-dark">日式</span>
+          <ul>
+            {% for tag in tag_list %}
+              <div class="form-check form-check-inline">
+                <li>{{tag.tags}}</li>
+              </div>
+            {% endfor %}
+          </ul>
 
           <h5>素食類別</h5>
           <span class="badge badge-pill badge-secondary">沒有素食</span>
