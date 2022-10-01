@@ -5,6 +5,10 @@ from .models import Photo, Place, Tag, Tag_Management, Device, Device_Management
 
 class PlaceAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'address', 'web_site', 'pub_date')
+    list_filter = ( 'pub_date','tags')
+    search_fields = ('name', 'address', 'web_site')
+    ordering = ('-id',)
+
 
 
 admin.site.register(Place, PlaceAdmin)
