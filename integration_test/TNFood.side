@@ -1,0 +1,123 @@
+{
+  "id": "98de5e44-1f2e-4994-95d6-3a9cab8b824e",
+  "version": "2.0",
+  "name": "TNFood",
+  "url": "http://127.0.0.1:8000/",
+  "tests": [{
+    "id": "0e7ec7b7-a16e-4431-ac02-e009455ad1ef",
+    "name": "測試使用者切換頁面",
+    "commands": [{
+      "id": "688b4695-7cc0-436e-92b9-6e7d08411311",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/food/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "473eae74-a7e6-4e2e-9510-6a68bbb4bcdd",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1280x775",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2f6f94be-c227-47cf-8c91-bd31bbb1c725",
+      "comment": "",
+      "command": "click",
+      "target": "css=a:nth-child(1) .p-1",
+      "targets": [
+        ["css=a:nth-child(1) .p-1", "css:finder"],
+        ["xpath=//img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e87650e1-97c1-4e2e-9934-04e9efcc7a55",
+      "comment": "",
+      "command": "click",
+      "target": "css=h2",
+      "targets": [
+        ["css=h2", "css:finder"],
+        ["xpath=//h2", "xpath:position"],
+        ["xpath=//h2[contains(.,'台南不需要米其林')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "26beece7-7dee-4533-a6a0-278739d0c2dd",
+      "comment": "",
+      "command": "click",
+      "target": "css=a:nth-child(2) .p-1",
+      "targets": [
+        ["css=a:nth-child(2) .p-1", "css:finder"],
+        ["xpath=//a[2]/div/div/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7edc062a-2eeb-40b5-adc2-813d7b68819b",
+      "comment": "",
+      "command": "click",
+      "target": "css=h2",
+      "targets": [
+        ["css=h2", "css:finder"],
+        ["xpath=//h2", "xpath:position"],
+        ["xpath=//h2[contains(.,'台南不需要米其林')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "64da3fde-db77-4a1d-9fe8-870aee24abf2",
+      "comment": "",
+      "command": "click",
+      "target": "css=.form-check-label",
+      "targets": [
+        ["css=.form-check-label", "css:finder"],
+        ["xpath=//ul/div/label", "xpath:position"],
+        ["xpath=//label[contains(.,'拉麵')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "49522087-d720-4ecb-b8ae-742454fbd92f",
+      "comment": "",
+      "command": "click",
+      "target": "css=ul",
+      "targets": [
+        ["css=ul", "css:finder"],
+        ["xpath=//ul", "xpath:position"],
+        ["xpath=//ul[contains(.,'拉麵')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "595306cb-6d2a-442b-b239-5bdca10987e9",
+      "comment": "",
+      "command": "click",
+      "target": "name=food_style",
+      "targets": [
+        ["name=food_style", "name"],
+        ["css=.form-check-input", "css:finder"],
+        ["xpath=//input[@name='food_style']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "232a9f57-479c-48e3-a9aa-b424c9f8ca4b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-outline-success",
+      "targets": [
+        ["css=.btn-outline-success", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'開始搜尋')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "cc785b21-b0e6-4ef5-a783-200584f6d164",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["0e7ec7b7-a16e-4431-ac02-e009455ad1ef"]
+  }],
+  "urls": ["http://127.0.0.1:8000/"],
+  "plugins": []
+}
