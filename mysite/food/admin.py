@@ -12,9 +12,7 @@ class PlaceAdmin(admin.ModelAdmin):
     list_filter = ('pub_date', 'tags')
     search_fields = ('name', 'address', 'web_site')
     ordering = ('-id',)
-
     readonly_fields = ('pub_date',)
-
     inlines = [TagInlineAdmin, ]
 
 
