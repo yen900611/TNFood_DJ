@@ -4,7 +4,39 @@
   "pk": 2,
   "fields": {
     "name": "拉麵",
-    "style": null
+    "style": "Raman"
+  }
+},
+{
+  "model": "food.tag",
+  "pk": 3,
+  "fields": {
+    "name": "全素",
+    "style": "vegan"
+  }
+},
+{
+  "model": "food.tag",
+  "pk": 4,
+  "fields": {
+    "name": "蛋素",
+    "style": "ovo-vegetarian"
+  }
+},
+{
+  "model": "food.tag",
+  "pk": 5,
+  "fields": {
+    "name": "奶素",
+    "style": "lacto-vegetarian"
+  }
+},
+{
+  "model": "food.tag",
+  "pk": 6,
+  "fields": {
+    "name": "五辛素",
+    "style": "spice-vegetarian"
   }
 },
 {
@@ -29,6 +61,18 @@
     "web_site": "https://www.facebook.com/profile.php?id=100063935765016",
     "introduction": "環境舒適，食物美味的日式定食",
     "pub_date": "2022-09-23T11:16:42Z"
+  }
+},
+{
+  "model": "food.place",
+  "pk": 3,
+  "fields": {
+    "name": "小鳥不吃肉",
+    "address": "台南市東區裕豐街118號",
+    "phone_number": "0920428428",
+    "web_site": "https://www.facebook.com/VeggieBirds/",
+    "introduction": "不用問去吃就對了",
+    "pub_date": "2022-09-29T09:11:23Z"
   }
 },
 {
@@ -68,11 +112,36 @@
   }
 },
 {
+  "model": "food.photo",
+  "pk": 6,
+  "fields": {
+    "name": "照燒豆皮",
+    "file": "photos/83287.jpg",
+    "place": 3
+  }
+},
+{
   "model": "food.tag_management",
   "pk": 2,
   "fields": {
     "place": 1,
     "tags": 2
+  }
+},
+{
+  "model": "food.tag_management",
+  "pk": 3,
+  "fields": {
+    "place": 3,
+    "tags": 3
+  }
+},
+{
+  "model": "food.tag_management",
+  "pk": 4,
+  "fields": {
+    "place": 3,
+    "tags": 4
   }
 }
 ]
