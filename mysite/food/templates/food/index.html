@@ -16,7 +16,7 @@
   <div class="container-fluid border-bottom">
     <div class="row ">
       <div class="col-3 border-right template-sidebar m-1">
-      {% include 'food/form_filter.html' %}
+      {% include 'food/form_filter.html' with tags=tags %}
       </div>
       <div class="col-8">
         <div class="container-fluid">
@@ -27,7 +27,7 @@
 
                 <div class="col-4 grid-item p-0 m-1">
                   <div class="grid-item-img">
-                    <img class="p-1" style="max-width:280px;max-height: 200px" src="{{ photo.url }}" alt="">
+                    <img class="p-1" style="max-width:280px;max-height: 200px" src="{{ store.get_sample_by_order.url }}" alt="">
                   </div>
                   <label for="">{{ store.name }}</label>
                 </div>
