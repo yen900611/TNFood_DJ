@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import generic
-from .models import Place, Photo, Tag, Tag_Management
+from .models import Place, Photo, Tag
 
 # class StoreListView(generic.ListView):
 #     model = Store
@@ -39,8 +39,8 @@ def place_introduction(request, place_id: int):
     # photo_list = Photo.objects.filter(place = place).all()
     # 方法二
     photo_list = place.photo_set.all()
-    # tag_list = Tag_Management.objects.first()
-    tag_list = Tag_Management.objects.filter(place=place)
+    tag_list = place.tag.all()
+    # tag_list = Tag_Management.objects.filter(place=place)
     return render(
         request,
         'food/place_introduction.html',
