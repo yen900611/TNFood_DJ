@@ -91,16 +91,21 @@
           <div><span class="material-icons">
               phone
             </span><label for="">{{ store.phone_number }}</label></div>
-          <div><span class="material-icons">
+          {% if store.web_site != "No web site" %}
+            <div>
+            <span class="material-icons">
               open_in_new
-            </span><label for="">{{ store.web_site }}</label></div>
-
+            </span>
+              <a href="{{ store.web_site }}">{{ store.web_site }}</a>
+            </div>
+          {% endif %}
         </div>
         <div class="col-4">
           <ul>
             {% for tag in tag_list %}
               <div class="form-check form-check-inline">
-                <li>{{tag.tags}}</li>
+              <span class="badge badge-pill badge-secondary">{{ tag.tags }}</span>
+
               </div>
             {% endfor %}
           </ul>
@@ -134,6 +139,7 @@
       next.children(':first-child').clone().appendTo($(this));
     }
   });
+
 
 
 
