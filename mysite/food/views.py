@@ -21,7 +21,6 @@ def index(request):
     places = Place.objects.all()
     photos = Photo.objects.all()
     tags = Tag.objects.all()
-    print(type(request.GET))
     try:
         if request.GET['food_style']:
             places = Place.objects.filter(tags__style=request.GET['food_style'])
