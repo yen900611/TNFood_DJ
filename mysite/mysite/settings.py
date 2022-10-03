@@ -132,3 +132,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 import mimetypes
 
 mimetypes.add_type("text/css", ".css", True)
+mimetypes.add_type("text/html", ".html", True)
+mimetypes.add_type("text/js", ".js", True)
