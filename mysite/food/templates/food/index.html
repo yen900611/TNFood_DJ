@@ -16,27 +16,72 @@
   <div class="container-fluid border-bottom">
     <div class="row ">
       <div class="col-3 border-right template-sidebar m-1">
-      {% include 'food/form_filter.html' with tags=tags %}
+        {#        {% include 'food/form_filter.html' with tags=tags %}#}
+        <h4>今天想吃什麼呢？</h4>
+        <form action="/food" method="get">
+          <div><label for="">料理分類</label></div>
+          <ul id="tag_filter">
+          </ul>
+          <br>
+          <button class="btn btn-outline-success" type="submit">開始搜尋</button>
+        </form>
       </div>
       <div class="col-8">
         <div class="container-fluid">
-          <div class="row ">
-            {% for store in store_list %}
-              {# 使用模板語言 嵌入URL #}
-              <a href="{% url 'food_introduction' place_id=store.id %}">
-
-                <div class="col-4 grid-item p-0 m-1">
-                  <div class="grid-item-img">
-                    <img class="p-1" style="max-width:280px;max-height: 200px" src="{{ store.get_sample_by_order.url }}" alt="">
-                  </div>
-                  <label for="">{{ store.name }}</label>
-                </div>
-              </a>
-
-            {% endfor %}
+          <div class="row " id="gallery">
           </div>
         </div>
       </div>
     </div>
   </div>{% endblock %}
 
+{% block custom_script %}
+  <script>
+
+
+      let place_url = `${API_ENDPOINT}/places`
+      fetch(place_url)
+          .then(response => response.json())
+          .then(result => {
+              let gallery_ele = $('#gallery')
+              console.table(result)
+
+              result.forEach(place => {
+                  gallery_ele.append(
+                      `<div class="col-4 grid-item p-0 m-1">
+                    <a href="http://127.0.0.1:8000/food/${place.id}">
+
+                        <div class="grid-item-img">
+                            <img class="p-1" style="max-width:280px;max-height: 200px"
+                                src="http://127.0.0.1:8000${place.photos[0].path}" alt="">
+                        </div>
+                        <label for="">${place.name}</label>
+                    </a>
+                </div>`
+                  )
+
+              });
+
+
+          })
+      let tags_url = `${API_ENDPOINT}/tags`
+      fetch(tags_url).then(response => response.json())
+          .then(tags => {
+              let tagFilter = $('#tag_filter')
+
+              tags.forEach(tag => {
+                  tagFilter.append(
+                      `
+                      <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="food_style" value=${tag.value}}>
+                            <label class="form-check-label" for="inlineCheckbox1">${tag.display}</label>
+                          </div>
+                          `
+                  )
+
+              });
+              console.table(tags)
+
+          })
+  </script>
+{% endblock %}
