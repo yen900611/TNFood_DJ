@@ -30,6 +30,17 @@ def add_tag(request, pay_load:Tags):
     return {"id":tag.id}
 
 @api.get("places")
+def places(request):
+    places = Place.objects.all().prefetch_related('photo_set')
+    # TODO refactor to Schema
+    result = [{
+        'name': place.name,
+        'address': place.address,
+        'phone_number': place.phone_number,
+        'photo_url': place.photo_set.first().file.url
+    } for place in places]
+    return result
+@api.get("place")
 def places(request, id):
     place = Place.objects.get(id=id)
     photo = place.photo_set.first()
