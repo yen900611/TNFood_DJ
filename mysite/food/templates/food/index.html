@@ -49,11 +49,11 @@
               result.forEach(place => {
                   gallery_ele.append(
                       `<div class="col-4 grid-item p-0 m-1">
-                    <a href="http://127.0.0.1:8000/food/${place.id}">
+                    <a href="${API_HOST}/food/${place.id}">
 
                         <div class="grid-item-img">
                             <img class="p-1" style="max-width:280px;max-height: 200px"
-                                src="http://127.0.0.1:8000${place.photos[0].path}" alt="">
+                                src="${API_HOST}${place.photos[0].path}" alt="">
                         </div>
                         <label for="">${place.name}</label>
                     </a>
