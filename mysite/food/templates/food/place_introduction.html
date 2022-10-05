@@ -106,7 +106,9 @@
 {% endblock %}
 {% block custom_script %}
   <script>
-      let id = 1;
+      let path = window.location.pathname
+      let words = path.split('/');
+      let id = words[2];
       let place_url = `${API_ENDPOINT}/place?id=${id}`
       var photo_nums = 0;
 
