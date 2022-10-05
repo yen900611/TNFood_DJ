@@ -1,9 +1,7 @@
 import datetime
 from typing import List, Optional
 
-from ninja import NinjaAPI, Schema, File, ModelSchema
-from ninja.files import UploadedFile
-from pydantic import AnyUrl
+from ninja import NinjaAPI, Schema, ModelSchema
 
 from .models import Place, Photo, Tag, Device
 
@@ -32,8 +30,8 @@ class PlacesSchema(Schema):
     address: str = "地址"
     phone_number: str = "電話"
     photos: Optional[list[PhotoSchema]]
-    web_site: str = ""
-    introduction: str = ""
+    web_site: str = "https://example.com"
+    introduction: str = "店家資訊"
     pub_date: datetime.datetime
     tag: list[Tags]
     devices = list[DeviceSchema]
@@ -47,14 +45,16 @@ def tags(request):
 
 @api.post("tags")
 def add_tag(request, pay_load: Tags):
-    tag = Tag.objects.create(**pay_load.dict())
-    return {"id": tag.id}
+    # tag = Tag.objects.create(**pay_load.dict())
+    # TODO add auth
+    return pay_load
 
 
 @api.get(
     "places",
     response=List[PlacesSchema])
 def places(request):
+    # TODO add filter
     places = Place.objects.prefetch_related('photo_set', 'tag').all()
     result = [PlacesSchema(
         **place.__dict__,
