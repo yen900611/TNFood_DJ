@@ -126,11 +126,14 @@
                   if (index === 0) {
                       photoCarousel.append(`<div class="carousel-item active">
                     <div class="col-md-4"><div class="card card-body">
-                      <img class="img-fluid" src="${API_HOST}${photo}"></div></div></div>`)
+                      <img class="img-fluid" src="${API_HOST}${photo.path}">
+<label>${photo.name}</label></div></div></div>`)
                   } else {
                       photoCarousel.append(`<div class="carousel-item">
                     <div class="col-md-4"><div class="card card-body">
-                      <img class="img-fluid" src="${API_HOST}${photo}"></div></div></div>`)
+                      <img class="img-fluid" src="${API_HOST}${photo.path}">
+<label>${photo.name}</label>
+</div></div></div>`)
                   }
 
               }

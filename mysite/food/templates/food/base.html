@@ -77,7 +77,7 @@
           integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
           crossorigin="anonymous"></script>
   <script>
-      const API_HOST = 'http://127.0.0.1:8000'
+      const API_HOST = window.location.protocol + "//" + window.location.host;
       const API_ENDPOINT = `${API_HOST}/api`
   </script>
 {% endblock %}

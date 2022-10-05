@@ -21,12 +21,17 @@ class DeviceSchema(ModelSchema):
         model_fields = ['name']
 
 
+class PhotoSchema(Schema):
+    name: str = "photo"
+    path: str = '/'
+
+
 class PlacesSchema(Schema):
     id: int = 1
     name: str = "店家"
     address: str = "地址"
     phone_number: str = "電話"
-    photos: Optional[list[str]]
+    photos: Optional[list[PhotoSchema]]
     web_site: str = ""
     introduction: str = ""
     pub_date: datetime.datetime
@@ -54,7 +59,7 @@ def places(request):
     result = [PlacesSchema(
         **place.__dict__,
         tag=[Tags(display=t.name, value=t.style) for t in place.tag.all()],
-        photos=[photo.file.url for photo in place.photo_set.all()]
+        photos=[PhotoSchema(name=photo.name,path=photo.file.url) for photo in place.photo_set.all()]
     ) for place in places]
     return result
 
@@ -65,6 +70,6 @@ def get_place(request, id: int = 1):
     result = PlacesSchema(
         **place.__dict__,
         tag=[Tags(display=t.name, value=t.style) for t in place.tag.all()],
-        photos=[photo.file.url for photo in place.photo_set.all()]
+        photos=[PhotoSchema(name=photo.name,path=photo.file.url) for photo in place.photo_set.all()]
     )
     return result
