@@ -21,12 +21,6 @@
         <form action="/food" method="get">
           <div><label for="">料理分類</label></div>
           <ul id="tag_filter">
-            {#            {% for tag in tags %}#}
-            {#                          <div class="form-check form-check-inline">#}
-            {#                            <input class="form-check-input" type="checkbox" name="food_style" value={{ tag.style }}>#}
-            {#                            <label class="form-check-label" for="inlineCheckbox1">{{ tag.name }}</label>#}
-            {#                          </div>#}
-            {#            {% endfor %}#}
           </ul>
           <br>
           <button class="btn btn-outline-success" type="submit">開始搜尋</button>
@@ -35,20 +29,6 @@
       <div class="col-8">
         <div class="container-fluid">
           <div class="row " id="gallery">
-            {#            {% for store in store_list %}#}
-            {# 使用模板語言 嵌入URL #}
-            {#              <a href="{% url 'food_introduction' place_id=store.id %}">#}
-            {##}
-            {#                <div class="col-4 grid-item p-0 m-1">#}
-            {#                  <div class="grid-item-img">#}
-            {#                    <img class="p-1" style="max-width:280px;max-height: 200px" src="{{ store.get_sample_by_order.url }}"#}
-            {#                         alt="">#}
-            {#                  </div>#}
-            {#                  <label for="">{{ store.name }}</label>#}
-            {#                </div>#}
-            {#              </a>#}
-            {##}
-            {#            {% endfor %}#}
           </div>
         </div>
       </div>
@@ -57,8 +37,7 @@
 
 {% block custom_script %}
   <script>
-      const API_HOST = 'http://127.0.0.1:8000'
-      const API_ENDPOINT = `${API_HOST}/api`
+
 
       let place_url = `${API_ENDPOINT}/places`
       fetch(place_url)

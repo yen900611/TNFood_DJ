@@ -46,101 +46,117 @@
         <div class="container text-center my-3">
           <div class="row mx-auto my-auto">
             <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel">
-              <div class="carousel-inner w-100" role="listbox">
-                {% for photo in photo_list %}
-                  {% if forloop.counter == 1 %}
-                    <div class="carousel-item active">
-                  {% else %}
-                    <div class="carousel-item ">
-                  {% endif %}
-
-                <div class="col-md-4">
-                  <div class="card card-body">
-                    <img class="img-fluid" src="{{ photo.file.url }}">
-                    <label for="">{{ photo.name }}</label>
-                  </div>
-                </div>
-                </div>
-                {% endfor %}
-                </div>
-                <a class="carousel-control-prev w-auto" href="#recipeCarousel" role="button" data-slide="prev">
-                  <span class="carousel-control-prev-icon bg-dark border border-dark rounded-circle"
-                        aria-hidden="true"></span>
-                  <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next w-auto" href="#recipeCarousel" role="button" data-slide="next">
-                  <span class="carousel-control-next-icon bg-dark border border-dark rounded-circle"
-                        aria-hidden="true"></span>
-                  <span class="sr-only">Next</span>
-                </a>
+              <div class="carousel-inner w-100" role="listbox" id="photoCarousel">
 
               </div>
+              <a class="carousel-control-prev w-auto" href="#recipeCarousel" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon bg-dark border border-dark rounded-circle"
+                        aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next w-auto" href="#recipeCarousel" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon bg-dark border border-dark rounded-circle"
+                        aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="col-4">
-          <h5>店家資訊</h5>
+      <div class="col-4">
+        <h5>店家資訊</h5>
 
-          <div><span class="material-icons">
+        <div><span class="material-icons">
               local_offer
             </span><label for="">{{ store.name }}</label></div>
-          <div><span class="material-icons">
+        <div><span class="material-icons">
               location_on
             </span><label for="">{{ store.address }}</label></div>
-          <div><span class="material-icons">
+        <div><span class="material-icons">
               phone
             </span><label for="">{{ store.phone_number }}</label></div>
-          {% if store.web_site != "No web site" %}
-            <div>
+        {% if store.web_site != "No web site" %}
+          <div>
             <span class="material-icons">
               open_in_new
             </span>
-              <a href="{{ store.web_site }}">{{ store.web_site }}</a>
-            </div>
-          {% endif %}
-        </div>
-        <div class="col-4">
-          <ul>
-            {% for tag in tag_list %}
-              <div class="form-check form-check-inline">
+            <a href="{{ store.web_site }}">{{ store.web_site }}</a>
+          </div>
+        {% endif %}
+      </div>
+      <div class="col-4">
+        <ul>
+          {% for tag in tag_list %}
+            <div class="form-check form-check-inline">
               <span class="badge badge-pill badge-secondary">{{ tag.tags }}</span>
 
-              </div>
-            {% endfor %}
-          </ul>
-        </div>
-        <div class="col-4">
-          <label for="">店家簡介</label>
-          <p>{{ store.introduction }}</p>
-        </div>
+            </div>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="col-4">
+        <label for="">店家簡介</label>
+        <p>{{ store.introduction }}</p>
       </div>
     </div>
   </div>
+  </div>
 {% endblock %}
 {% block custom_script %}
-
   <script>
-
-  $('.carousel .carousel-item').each(function () {
-    var minPerSlide = 3;
-    var next = $(this).next();
-    if (!next.length) {
-      next = $(this).siblings(':first');
-    }
-    next.children(':first-child').clone().appendTo($(this));
-
-    for (var i = 0; i < minPerSlide; i++) {
-      next = next.next();
-      if (!next.length) {
-        next = $(this).siblings(':first');
-      }
-
-      next.children(':first-child').clone().appendTo($(this));
-    }
-  });
+      let id = 1;
+      let place_url = `${API_ENDPOINT}/place?id=${id}`
+      var photo_nums = 0;
 
 
+
+      fetch(place_url)
+          .then(response => response.json())
+          .then(place => {
+              {#let gallery_ele = $('#gallery')#}
+              console.table(place)
+
+              let photoCarousel = $('#photoCarousel')
+              let photos = place.photos
+              photo_nums = photos.length
+              for (let index = 0; index < photos.length; index++) {
+                  const photo = photos[index];
+                  console.log("append" + photo)
+                  if (index === 0) {
+                      photoCarousel.append(`<div class="carousel-item active">
+                    <div class="col-md-4"><div class="card card-body">
+                      <img class="img-fluid" src="${API_HOST}${photo}"></div></div></div>`)
+                  } else {
+                      photoCarousel.append(`<div class="carousel-item">
+                    <div class="col-md-4"><div class="card card-body">
+                      <img class="img-fluid" src="${API_HOST}${photo}"></div></div></div>`)
+                  }
+
+              }
+
+
+          }).then(function () {
+ $('.carousel .carousel-item').each(function () {
+          var minPerSlide = 3;
+          var next = $(this).next();
+          if (!next.length) {
+              next = $(this).siblings(':first');
+          }
+          next.children(':first-child').clone().appendTo($(this));
+
+          for (var i = 0; i < minPerSlide; i++) {
+              next = next.next();
+              if (!next.length) {
+                  next = $(this).siblings(':first');
+              }
+
+              next.children(':first-child').clone().appendTo($(this));
+          }
+      });
+
+      })
 
 
   </script>
