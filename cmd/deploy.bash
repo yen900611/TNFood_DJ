@@ -1,3 +1,4 @@
+git fetch
 git pull origin master
 git checkout master
 source ./venv/bin/activate
