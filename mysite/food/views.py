@@ -21,11 +21,8 @@ def index(request):
     places = Place.objects.all()
     photos = Photo.objects.all()
     tags = Tag.objects.all()
-    try:
-        if request.GET['food_style']:
-            places = Place.objects.filter(tags__style=request.GET['food_style'])
-    except Exception:
-        pass
+    if request.GET:
+        places = Place.objects.filter(tag__style=request.GET['food_style'])
     return render(
         request,
         'food/index.html',

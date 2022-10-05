@@ -1,38 +1,75 @@
-from typing import List
+import datetime
+from typing import List, Optional
 
-from ninja import NinjaAPI, Schema
+from ninja import NinjaAPI, Schema, ModelSchema
 
-from .models import Place, Photo, Tag
+from .models import Place, Photo, Tag, Device
 
 api = NinjaAPI()
 
 
 class Tags(Schema):
-    name: str
-    style: str
+    display: str
+    value: str
 
 
-class Places(Schema):
-    name: str
-    address: str
-    phone_number: str
-    photo_url: str
+class DeviceSchema(ModelSchema):
+    class Config:
+        model = Device
+        model_fields = ['name']
+
+
+class PhotoSchema(Schema):
+    name: str = "photo"
+    path: str = '/'
+
+
+class PlacesSchema(Schema):
+    id: int = 1
+    name: str = "店家"
+    address: str = "地址"
+    phone_number: str = "電話"
+    photos: Optional[list[PhotoSchema]]
+    web_site: str = "https://example.com"
+    introduction: str = "店家資訊"
+    pub_date: datetime.datetime
+    tag: list[Tags]
+    devices = list[DeviceSchema]
 
 
 @api.get("tags", response=List[Tags])
 def tags(request):
-    tag = Tag.objects.all()
-    return tag
+    tags = Tag.objects.all()
+    return [Tags(display=t.name, value=t.style) for t in tags]
 
 
-@api.get("places")
-def places(request, id):
-    place = Place.objects.get(id=id)
-    photo = place.photo_set.first()
-    result = {
-        'name': place.name,
-        'address': place.address,
-        'phone_number': place.phone_number,
-        'photo_url': photo.file.url
-    }
+@api.post("tags")
+def add_tag(request, pay_load: Tags):
+    # tag = Tag.objects.create(**pay_load.dict())
+    # TODO add auth
+    return pay_load
+
+
+@api.get(
+    "places",
+    response=List[PlacesSchema])
+def places(request):
+    # TODO add filter
+    places = Place.objects.prefetch_related('photo_set', 'tag').all()
+    result = [PlacesSchema(
+        **place.__dict__,
+        tag=[Tags(display=t.name, value=t.style) for t in place.tag.all()],
+        photos=[PhotoSchema(name=photo.name,path=photo.file.url) for photo in place.photo_set.all()]
+    ) for place in places]
+    return result
+
+
+@api.get("place", response=PlacesSchema)
+def get_place(request, id: int = 1):
+    place = Place.objects.prefetch_related('photo_set', 'tag').get(id=id)
+    result = PlacesSchema(
+        **place.__dict__,
+        tag=[Tags(display=t.name, value=t.style) for t in place.tag.all()],
+        photos=[PhotoSchema(name=photo.name,path=photo.file.url) for photo in place.photo_set.all()]
+    )
     return result
