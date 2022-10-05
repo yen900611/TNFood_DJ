@@ -22,6 +22,7 @@ class DeviceSchema(ModelSchema):
 
 
 class PlacesSchema(Schema):
+    id: int = 1
     name: str = "店家"
     address: str = "地址"
     phone_number: str = "電話"
@@ -35,8 +36,8 @@ class PlacesSchema(Schema):
 
 @api.get("tags", response=List[Tags])
 def tags(request):
-    tag = Tag.objects.all()
-    return tag
+    tags = Tag.objects.all()
+    return [Tags(display=t.name, value=t.style) for t in tags]
 
 
 @api.post("tags")
@@ -45,27 +46,25 @@ def add_tag(request, pay_load: Tags):
     return {"id": tag.id}
 
 
-@api.get("places",
-         response=List[PlacesSchema]
-         )
+@api.get(
+    "places",
+    response=List[PlacesSchema])
 def places(request):
-    places = Place.objects.all().prefetch_related('photo_set', 'tag')
-    # TODO refactor to Schema
-
+    places = Place.objects.prefetch_related('photo_set', 'tag').all()
     result = [PlacesSchema(
         **place.__dict__,
-        tag=[Tags(display=t.name,value=t.style) for t in place.tag.all()],
+        tag=[Tags(display=t.name, value=t.style) for t in place.tag.all()],
         photos=[photo.file.url for photo in place.photo_set.all()]
     ) for place in places]
     return result
 
 
 @api.get("place", response=PlacesSchema)
-def get_place(request, id=1):
+def get_place(request, id: int = 1):
     place = Place.objects.prefetch_related('photo_set', 'tag').get(id=id)
     result = PlacesSchema(
         **place.__dict__,
-        tag=[Tags(display=t.name,value=t.style) for t in place.tag.all()],
+        tag=[Tags(display=t.name, value=t.style) for t in place.tag.all()],
         photos=[photo.file.url for photo in place.photo_set.all()]
     )
     return result
