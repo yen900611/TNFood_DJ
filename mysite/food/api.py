@@ -1,11 +1,13 @@
 import datetime
 from typing import List, Optional
 
-from ninja import NinjaAPI, Schema, ModelSchema
+from django.contrib.auth import authenticate
+from ninja import NinjaAPI, Schema, ModelSchema, Query, Router
+from ninja.security import django_auth, HttpBearer, HttpBasicAuth
 
 from .models import Place, Photo, Tag, Device
 
-api = NinjaAPI()
+api = NinjaAPI(csrf=True)
 
 
 class Tags(Schema):
@@ -42,20 +44,34 @@ def tags(request):
     tags = Tag.objects.all()
     return [Tags(display=t.name, value=t.style) for t in tags]
 
+# router = Router(auth=django_auth)
 
-@api.post("tags")
-def add_tag(request, pay_load: Tags):
-    # tag = Tag.objects.create(**pay_load.dict())
-    # TODO add auth
-    return pay_load
+
+class AuthBearer(HttpBearer):
+    def authenticate(self, request, token):
+        if token == "supersecret":
+            return token
+
+class BasicAuth(HttpBasicAuth):
+    def authenticate(self, request, username, password):
+        user = authenticate(username=username, password=password)
+        return user
+
+@api.post("tags", auth=BasicAuth())
+def add_tag(request, tags: Tags):
+    tag = Tag(name=tags.display, style = tags.value)
+    tag.save()
+    return tag.name
 
 
 @api.get(
     "places",
     response=List[PlacesSchema])
-def places(request):
-    # TODO add filter
-    places = Place.objects.prefetch_related('photo_set', 'tag').all()
+def places(request, food_style:str=None):
+    if food_style:
+        places = Place.objects.prefetch_related('photo_set', 'tag').filter(tag__style=food_style)
+    else:
+        places = Place.objects.prefetch_related('photo_set', 'tag').all()
     result = [PlacesSchema(
         **place.__dict__,
         tag=[Tags(display=t.name, value=t.style) for t in place.tag.all()],
