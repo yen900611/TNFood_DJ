@@ -1,39 +1,60 @@
 {% extends 'food/base.html' %}
+{% load static %}
 
 {% block title %} 台南不需要米其林 {% endblock %}
 {% block custom_style %}
-  <style>
+  <link rel="stylesheet" href="{% static 'food/css/index.css' %}">
 
-      .template-sidebar {
-          min-height: 600px;
-          background-color: #FFFFFF;
-          border: #AE3338 5px solid;
-      }
-  </style>
 {% endblock %}
 {% block main %}
+  <div class="container-fluid ">
+    <div class="row place-gallery">
+      <!-- TODO Edit here -->
+      <p>熱門分類</p>
 
-  <div class="container-fluid border-bottom">
-    <div class="row ">
-      <div class="col-3 border-right template-sidebar m-1">
-        {#        {% include 'food/form_filter.html' with tags=tags %}#}
-        <h4>今天想吃什麼呢？</h4>
-        <form action="/food" method="get">
+    </div>
+    <form action="/food" method="get">
+      <div class="row place-filter">
+        <div class="col-9">
+
           <div><label for="">料理分類</label></div>
           <ul id="tag_filter">
           </ul>
           <br>
-          <button class="btn btn-outline-success" type="submit">開始搜尋</button>
-        </form>
-      </div>
-      <div class="col-8">
-        <div class="container-fluid">
-          <div class="row " id="gallery">
-          </div>
+
+
         </div>
+        <div class="col-3">
+          <button class="btn btn-outline-success " type="submit">開始搜尋</button>
+        </div>
+
       </div>
+    </form>
+    <div class="row place-list" id="gallery">
     </div>
-  </div>{% endblock %}
+  </div>
+  {#  <div class="container-fluid border-bottom">#}
+  {#    <div class="row ">#}
+  {#      <div class="col-3 border-right template-sidebar m-1">#}
+  {#        {% include 'food/form_filter.html' with tags=tags %}#}
+  {#        <h4>今天想吃什麼呢？</h4>#}
+  {#        <form action="/food" method="get">#}
+  {#          <div><label for="">料理分類</label></div>#}
+  {#          <ul id="tag_filter">#}
+  {#          </ul>#}
+  {#          <br>#}
+  {#          <button class="btn btn-outline-success" type="submit">開始搜尋</button>#}
+  {#        </form>#}
+  {#      </div>#}
+  {#      <div class="col-8">#}
+  {#        <div class="container-fluid">#}
+  {#          <div class="row " >#}
+  {#          </div>#}
+  {#        </div>#}
+  {#      </div>#}
+  {#    </div>#}
+  {#  </div>#}
+{% endblock %}
 
 {% block custom_script %}
   <script>
@@ -48,16 +69,19 @@
 
               result.forEach(place => {
                   gallery_ele.append(
-                      `<div class="col-4 grid-item p-0 m-1">
-                    <a href="${API_HOST}/food/${place.id}">
-
-                        <div class="grid-item-img">
-                            <img class="p-1" style="max-width:280px;max-height: 200px"
-                                src="${API_HOST}${place.photos[0].path}" alt="">
+                      `
+              <div class="col col-lg-3 m-auto">
+                    <div class="place-item">
+                        <div>
+                            <img src="${API_HOST}${place.photos[0].path}" alt="">
                         </div>
-                        <label for="">${place.name}</label>
-                    </a>
-                </div>`
+                        <div>
+                    <a href="${API_HOST}/food/${place.id}">
+                        <h5 class="align-content-center">${place.name}</h5></a>
+
+                    </div>
+              </div>
+                    `
                   )
 
               });
