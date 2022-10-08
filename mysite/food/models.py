@@ -1,7 +1,10 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 
 
 # Create your models here.
+
+
 class Tag(models.Model):
     name = models.CharField(max_length=10)
     value = models.CharField(max_length=30, default="None")
@@ -34,14 +37,22 @@ class Place(models.Model):
         if self.photo_set.count():
             return self.photo_set.first().file
 
+def validate_file_size(value):
+    filesize = value.size
+    if filesize > 10240:
+        raise ValidationError("The maximum file size that can be uploaded is 10KB")
+    else:
+        return value
+
 
 class Photo(models.Model):
     name = models.CharField(max_length=255)
-    file = models.ImageField(upload_to='photos')
+    file = models.ImageField(upload_to='photos', validators=[validate_file_size])
     place = models.ForeignKey(Place, help_text="The place that this photo come from.", on_delete=models.SET_NULL,
                               null=True)
 
-#
+
+
 # class Tag_Management(models.Model):
 #     place = models.ForeignKey(Place, on_delete=models.SET_NULL, null=True)
 #     tags = models.ForeignKey(Tag, on_delete=models.SET_NULL, null=True)
