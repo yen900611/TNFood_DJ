@@ -5,6 +5,7 @@
 {% block custom_style %}
   <link rel="stylesheet" href="{% static 'food/css/index.css' %}">
   <link rel="stylesheet" href="{% static 'food/css/carousel.css' %}">
+{#  <link rel="stylesheet" href="{% static 'food/css/reset.css' %}">#}
 
 {% endblock %}
 {% block main %}
@@ -17,7 +18,8 @@
               <div class="col-4">
                 <div class="">
                   <img class="img-fluid" src="https://picsum.photos/240/240/?random=1">
-                  <label></label>
+                  <label>熱門分類1</label>
+
                 </div>
               </div>
             </div>
@@ -25,15 +27,14 @@
               <div class="col-4">
                 <div class="">
                   <img class="img-fluid" src="https://picsum.photos/240/240/?random=2">
-                  <label></label>
-                </div>
+                  <label>熱門分類2</label></div>
               </div>
             </div>
             <div class="carousel-item">
               <div class="col-4">
                 <div class="">
                   <img class="img-fluid" src="https://picsum.photos/240/240/?random=3">
-                  <label></label>
+                  <label>熱門分類3</label>
                 </div>
               </div>
             </div>
@@ -57,20 +58,20 @@
       <form class="m-auto">
         <div class="form-row">
           <div class="col-3">
-            <div><label for="">料理分類</label></div>
+            <div><label for="">素別</label></div>
             <ul id="tag_filter">
             </ul>
           </div>
           <div class="col-3">
-            <label for="">餐廳類型</label>
+            <label for="">食物類型</label>
           </div>
           <div class="col-3">
-          <label for="">餐廳類型</label>
+            <label for="">食物風格</label>
 
           </div>
-          <div class="col-3">
+          <div class="col-3 ">
 
-            <button class="btn btn-outline-success " type="submit">開始搜尋</button>
+            <button class="btn mt-5" style="background: #CEB5A7; border-radius: 30px;" type="submit">點我送出搜尋</button>
           </div>
 
         </div>
@@ -84,8 +85,8 @@
 {% block custom_script %}
   <script>
 
-
-      let place_url = `${API_ENDPOINT}/places`
+      let query_params = window.location.search
+      let place_url = `${API_ENDPOINT}/places${query_params}`
       fetch(place_url)
           .then(response => response.json())
           .then(result => {
@@ -100,9 +101,10 @@
                         <div>
                             <img src="${API_HOST}${place.photos[0].path}" alt="">
                         </div>
-                        <div>
-                    <a href="${API_HOST}/food/${place.id}">
-                        <h5 class="align-content-center">${place.name}</h5></a>
+                        <div class="text-center ">
+                    <a href="${API_HOST}/food/${place.id}" class="badge">
+
+                        <h5>${place.name}</h5></a>
 
                     </div>
               </div>
@@ -122,7 +124,7 @@
                   tagFilter.append(
                       `
                       <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" name="food_style" value=${tag.value}}>
+                            <input class="form-check-input" type="checkbox" name="food_style" value="${tag.value}">
                             <label class="form-check-label" for="inlineCheckbox1">${tag.display}</label>
                           </div>
                           `
