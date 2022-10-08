@@ -1,0 +1,23 @@
+footer {
+    min-height: 100px;
+    background-color: cornsilk;
+}
+
+
+main {
+    min-height: 600px;
+}
+
+.grid-item {
+    max-width: 300px;
+    max-height: 300px;
+
+    border: 1px solid #AE3338;
+}
+
+.grid-item > .grid-item-img {
+
+    border: 3px solid #AE3338;
+    /* width: 100%; */
+
+}

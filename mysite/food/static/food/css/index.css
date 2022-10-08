@@ -1,0 +1,25 @@
+.place-gallery {
+    min-height: 250px;
+    background-color: #CEB5A7;
+
+}
+
+.place-filter {
+    min-height: 150px;
+}
+.place-list {
+    min-height: 500px;
+}
+.place-item {
+    width: 240px;
+    height: 360px;
+    border: 1px solid #969191;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+}
+
+.place-item img {
+    border-radius: 30px 30px 0px 0px;
+    width: 240px;
+    height: 240px;
+}

@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html>
 <head>
@@ -8,65 +9,33 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
           integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <style>
-        footer {
-            min-height: 100px;
-            background-color: cornsilk;
-        }
+    <link rel="stylesheet" href="{% static 'food/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'food/css/header.css' %}">
 
-        header {
-            min-height: 100px;
-            max-height: 150px;
-            background-color: #AE3338;
-
-        }
-
-        main {
-            min-height: 600px;
-        }
-
-
-        .grid-item {
-            /* grid_item_place */
-
-
-            /* box-sizing: border-box; */
-
-            max-width: 300px;
-            max-height: 300px;
-
-            border: 1px solid #AE3338;
-        }
-
-        .grid-item > .grid-item-img {
-
-            border: 3px solid #AE3338;
-            /* width: 100%; */
-
-        }
-    </style>
   {% endblock %}
   {% block custom_style %}{% endblock %}
 </head>
 <body>
-<header>
-  <!-- search block -->
-  <div class="p-3">
+    <header>
+        <div class="p-1 home-header">
+            <div class="home-header-logo">
+                <img src="/static/food/img/logo.png" style="width: 80px; height: 80px">
+            </div>
+            <div class="home-header-title m-auto mt-3">
+                <a href="/food" class="btn inline text-white">
+                    <h2>台南不需要米其林</h2>
+                </a>
 
-    <div class="m-auto mt-3">
-      <!-- The form -->
-      <a href="/food" class="btn inline text-white"><h2>台南不需要米其林</h2></a>
-
-    </div>
-  </div>
-</header>
+            </div>
+            <div class="home-header-left ml-5 ">
+                <a href="＃" class="btn inline text-white">關於我們</a>
+            </div>
+        </div>
+    </header>
 
 <main>
   {% block main %}{% endblock %}
 </main>
-<footer>
-
-</footer>
 </body>
 {% block script %}
 
