@@ -36,6 +36,8 @@ ALLOWED_HOSTS = [
     '127.0.0.1'
 ]
 
+SESSION_COOKIE_AGE = 60 * 3  # 30 mins
+
 # Application definition
 
 INSTALLED_APPS = [

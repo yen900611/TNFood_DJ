@@ -3,6 +3,7 @@ from django.db import models
 
 
 # Create your models here.
+from django.utils import timezone
 
 
 class Tag(models.Model):
@@ -52,10 +53,29 @@ class Photo(models.Model):
                               null=True)
 
 
-
-# class Tag_Management(models.Model):
-#     place = models.ForeignKey(Place, on_delete=models.SET_NULL, null=True)
-#     tags = models.ForeignKey(Tag, on_delete=models.SET_NULL, null=True)
+# 網站總訪問次數
+# class VisitNumber(models.Model):
+#     count = models.IntegerField(verbose_name='網站訪問總次數', default=0)  # 網站訪問總次數
+#
+#     class Meta:
+#         verbose_name = '網站訪問總次數'
+#         verbose_name_plural = verbose_name
+#
+#     def __str__(self):
+#         return str(self.count)
+#
+#
+# # 單日訪問量統計
+# class DayNumber(models.Model):
+#     day = models.DateField(verbose_name='日期', default=timezone.now)
+#     count = models.IntegerField(verbose_name='網站訪問次數', default=0)  # 網站訪問總次數
+#
+#     class Meta:
+#         verbose_name = '網站日訪問量統計'
+#         verbose_name_plural = verbose_name
+#
+#     def __str__(self):
+#         return str(self.day)
 
 
 class Device_Management(models.Model):
