@@ -27,11 +27,15 @@ def index(request):
     return redirect('/food/')
 
 
+
+
+
 urlpatterns = \
     [
         path('food-admin/', admin.site.urls),
         path('food/', include('food.urls')),
         path("api/", api.urls),
+
         path('', index)
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL,
                                                                                document_root=settings.STATIC_ROOT)
