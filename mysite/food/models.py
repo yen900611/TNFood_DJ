@@ -1,5 +1,6 @@
 from django.core.exceptions import ValidationError
 from django.db import models
+from django_resized import ResizedImageField
 
 
 # Create your models here.
@@ -48,7 +49,7 @@ def validate_file_size(value):
 
 class Photo(models.Model):
     name = models.CharField(max_length=255)
-    file = models.ImageField(upload_to='photos', validators=[validate_file_size])
+    file = ResizedImageField(size=[400, 400], crop=['middle', 'center'], force_format='PNG', upload_to='photos', validators=[validate_file_size])
     place = models.ForeignKey(Place, help_text="The place that this photo come from.", on_delete=models.SET_NULL,
                               null=True)
 
