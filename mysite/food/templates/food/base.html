@@ -52,4 +52,15 @@
 {% endblock %}
 {% block custom_script %}
 {% endblock %}
+{% block post_script %}
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HDSPGV6H9P"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-HDSPGV6H9P');
+</script>
+{% endblock %}
 </html>
