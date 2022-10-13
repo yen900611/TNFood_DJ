@@ -41,8 +41,8 @@ class Place(models.Model):
 
 def validate_file_size(value):
     filesize = value.size
-    if filesize > 10240:
-        raise ValidationError("The maximum file size that can be uploaded is 10KB")
+    if filesize > 512000:
+        raise ValidationError("The maximum file size that can be uploaded is 500KB")
     else:
         return value
 
