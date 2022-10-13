@@ -77,7 +77,7 @@ def add_tag(request, tags: Tags):
     response=List[PlacesSchema])
 def places(request, food_style: str = None):
     if food_style:
-        places = Place.objects.prefetch_related('photo_set', 'tag').filter(tag__style=food_style)
+        places = Place.objects.prefetch_related('photo_set', 'tag').filter(tag__value=food_style)
     else:
         places = Place.objects.prefetch_related('photo_set', 'tag').all()
     result = [PlacesSchema(
