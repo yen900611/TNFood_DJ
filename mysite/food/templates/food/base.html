@@ -16,26 +16,44 @@
   {% block custom_style %}{% endblock %}
 </head>
 <body>
-    <header>
-        <div class="p-1 home-header">
-            <div class="home-header-logo">
-                <img src="/static/food/img/logo.png" style="width: 80px; height: 80px">
-            </div>
-            <div class="home-header-title m-auto mt-3">
-                <a href="/food" class="btn inline text-white">
-                    <h2>台南不需要米其林</h2>
-                </a>
+<header>
+  <div class="p-1 home-header">
+    <div class="home-header-logo">
+      <img src="/static/food/img/logo.png" style="width: 80px; height: 80px">
+    </div>
+    <div class="home-header-title m-auto mt-3">
+      <a href="/food" class="btn inline text-white">
+        <h2>台南不需要米其林</h2>
+      </a>
 
-            </div>
-            <div class="home-header-left ml-5 ">
-                <a href="＃" class="btn inline text-white">關於我們</a>
-            </div>
-        </div>
-    </header>
+    </div>
+    <div class="home-header-left ml-5 ">
+      <a href="＃" class="btn inline text-white">關於我們</a>
+    </div>
+  </div>
+</header>
 
 <main>
   {% block main %}{% endblock %}
+
 </main>
+<div style="height: 200px">
+  {% block footer %}
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7226655551293951"
+            crossorigin="anonymous"></script>
+
+    <!-- Footer的廣告 -->
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-7226655551293951"
+         data-ad-slot="5788882957"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  {% endblock %}
+</div>
 </body>
 {% block script %}
 
@@ -54,13 +72,17 @@
 {% endblock %}
 {% block post_script %}
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HDSPGV6H9P"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HDSPGV6H9P"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'G-HDSPGV6H9P');
-</script>
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'G-HDSPGV6H9P');
+  </script>
 {% endblock %}
 </html>
