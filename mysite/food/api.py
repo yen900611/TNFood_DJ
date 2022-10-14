@@ -15,10 +15,10 @@ class Visit_num(Schema):
     total: int
 
 
-class TagSchema(ModelSchema):
-    class Config:
-        model = Tag
-        model_fields = ['name', 'value', 'group']
+class TagSchema(Schema):
+    name: str
+    value: str
+    group: str
 
 
 class DeviceSchema(ModelSchema):
@@ -48,8 +48,8 @@ class PlacesSchema(Schema):
 @api.get("tags", response=List[TagSchema])
 def tags(request):
     # tags = Tag.objects.all()
-    t = Tag()
-    return Tag.objects.all()
+
+    return [TagSchema(group=t.get_group_display(), name=t.name, value=t.value) for t in Tag.objects.all()]
 
 
 # router = Router(auth=django_auth)
