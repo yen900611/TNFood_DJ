@@ -4,72 +4,63 @@
 {% block title %} 台南不需要米其林 {% endblock %}
 {% block custom_style %}
   <link rel="stylesheet" href="{% static 'food/css/index.css' %}">
-  <link rel="stylesheet" href="{% static 'food/css/carousel.css' %}">
+  {#  <link rel="stylesheet" href="{% static 'food/css/carousel.css' %}">#}
   {#  <link rel="stylesheet" href="{% static 'food/css/reset.css' %}">#}
 
 {% endblock %}
 {% block main %}
   <div class="container-fluid ">
-    {#  #}
-    {#    <div class="row place-gallery">#}
-    {#      <div class="col-12">#}
-    {#        <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel">#}
-    {#          <div class="carousel-inner w-100" role="listbox">#}
-    {#            <div class="carousel-item active">#}
-    {#              <div class="col-4">#}
-    {#                <div class="">#}
-    {#                  <img class="img-fluid" src="https://picsum.photos/240/240/?random=1">#}
-    {#                  <label>熱門分類1</label>#}
-    {##}
-    {#                </div>#}
-    {#              </div>#}
-    {#            </div>#}
-    {#            <div class="carousel-item">#}
-    {#              <div class="col-4">#}
-    {#                <div class="">#}
-    {#                  <img class="img-fluid" src="https://picsum.photos/240/240/?random=2">#}
-    {#                  <label>熱門分類2</label></div>#}
-    {#              </div>#}
-    {#            </div>#}
-    {#            <div class="carousel-item">#}
-    {#              <div class="col-4">#}
-    {#                <div class="">#}
-    {#                  <img class="img-fluid" src="https://picsum.photos/240/240/?random=3">#}
-    {#                  <label>熱門分類3</label>#}
-    {#                </div>#}
-    {#              </div>#}
-    {#            </div>#}
-    {#          </div>#}
-    {#          <a class="carousel-control-prev w-auto" href="#recipeCarousel" role="button" data-slide="prev">#}
-    {#                  <span class="carousel-control-prev-icon bg-dark border border-dark rounded-circle"#}
-    {#                        aria-hidden="true"></span>#}
-    {#            <span class="sr-only">Previous</span>#}
-    {#          </a>#}
-    {#          <a class="carousel-control-next w-auto" href="#recipeCarousel" role="button" data-slide="next">#}
-    {#                  <span class="carousel-control-next-icon bg-dark border border-dark rounded-circle"#}
-    {#                        aria-hidden="true"></span>#}
-    {#            <span class="sr-only">Next</span>#}
-    {#          </a>#}
-    {##}
-    {#        </div>#}
-    {#      </div>#}
-    {#    </div>#}
+
+    <div class="row place-gallery">
+      <!-- TODO Edit here -->
+      <div class="card-deck m-auto">
+        <a href="#">
+          <div class="card bg-dark text-white">
+            <img class="card-img " src="https://picsum.photos/360/240/?random=1" alt="Card image">
+            <div class="card-img-overlay">
+              <h5 class="card-title">台南素</h5>
+            </div>
+          </div>
+        </a>
+        <a href="#">
+          <div class="card bg-dark text-white">
+            <img class="card-img" src="https://picsum.photos/360/240/?random=2" alt="Card image">
+            <div class="card-img-overlay">
+              <h5 class="card-title">我家巷口</h5>
+            </div>
+          </div>
+        </a>
+        <a href="#">
+          <div class="card bg-dark text-white">
+            <img class="card-img" src="https://picsum.photos/360/240/?random=3" alt="Card image">
+            <div class="card-img-overlay">
+              <h5 class="card-title">台南伴手禮</h5>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
 
     <div class="row">
       <form class="m-auto">
         <div class="form-row">
           <div class="col-3">
-            <div><label for="">素別</label></div>
+            <div><label for=""><span class="badge badge-pill badge-success">素食種類</span>
+            </label></div>
             <ul id="tag_veg_style">
             </ul>
           </div>
           <div class="col-3">
-            <label for="">食物類型</label>
+            <label for=""></label>
+            <label for=""><span class="badge badge-pill badge-primary">食物類型</span>
+            </label>
             <ul id="tag_food_category">
             </ul>
           </div>
           <div class="col-3">
-            <label for="">食物風格</label>
+            
+            <label for=""><span class="badge badge-pill badge-light">食物風格</span>
+            </label>
             <ul id="tag_food_style">
             </ul>
           </div>

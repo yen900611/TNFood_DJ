@@ -23,3 +23,7 @@
     width: 240px;
     height: 240px;
 }
+
+.card .card-img{
+    opacity:50%;
+}
