@@ -7,12 +7,12 @@ from django.utils import timezone
 
 
 class Tag(models.Model):
-    vegen_style = 'V'
+    vegan_style = 'V'
     category = 'C'
     food_style = 'F'
     name = models.CharField(max_length=10)
-    value = models.CharField(max_length=30, default="None")
-    group = models.CharField(max_length=30, default=food_style, choices=[(vegen_style, 'vegen_style'),
+    value = models.CharField(max_length=30, default="None",unique=True)
+    group = models.CharField(max_length=30, default=food_style, choices=[(vegan_style, 'vegan_style'),
                                                                 (category, 'category'),
                                                                 (food_style, 'food_style'), ])
 
