@@ -15,9 +15,10 @@ class Visit_num(Schema):
     total: int
 
 
-class Tags(Schema):
-    display: str
-    value: str
+class TagSchema(ModelSchema):
+    class Config:
+        model = Tag
+        model_fields = ['name', 'value', 'group']
 
 
 class DeviceSchema(ModelSchema):
@@ -40,14 +41,15 @@ class PlacesSchema(Schema):
     web_site: str = "https://example.com"
     introduction: str = "店家資訊"
     pub_date: datetime.datetime
-    tag: list[Tags]
+    tag: list[TagSchema]
     devices = list[DeviceSchema]
 
 
-@api.get("tags", response=List[Tags])
+@api.get("tags", response=List[TagSchema])
 def tags(request):
-    tags = Tag.objects.all()
-    return [Tags(display=t.name, value=t.value) for t in tags]
+    # tags = Tag.objects.all()
+    t = Tag()
+    return Tag.objects.all()
 
 
 # router = Router(auth=django_auth)
@@ -66,7 +68,7 @@ class BasicAuth(HttpBasicAuth):
 
 
 @api.post("tags", auth=BasicAuth())
-def add_tag(request, tags: Tags):
+def add_tag(request, tags: TagSchema):
     tag = Tag(name=tags.display, style=tags.value)
     tag.save()
     return tag.name
@@ -82,7 +84,7 @@ def places(request, food_style: str = None):
         places = Place.objects.prefetch_related('photo_set', 'tag').all()
     result = [PlacesSchema(
         **place.__dict__,
-        tag=[Tags(display=t.name, value=t.value) for t in place.tag.all()],
+        tag=[TagSchema(display=t.name, value=t.value) for t in place.tag.all()],
         photos=[PhotoSchema(name=photo.name, path=photo.file.url) for photo in place.photo_set.all()]
     ) for place in places]
     return result
@@ -93,7 +95,7 @@ def get_place(request, id: int = 1):
     place = Place.objects.prefetch_related('photo_set', 'tag').get(id=id)
     result = PlacesSchema(
         **place.__dict__,
-        tag=[Tags(display=t.name, value=t.value) for t in place.tag.all()],
+        tag=[TagSchema(display=t.name, value=t.value) for t in place.tag.all()],
         photos=[PhotoSchema(name=photo.name, path=photo.file.url) for photo in place.photo_set.all()]
     )
     return result
@@ -103,4 +105,4 @@ def get_place(request, id: int = 1):
 def visit_number(request):
     num_visits = request.session.get('num_visits', 0)
     request.session['num_visits'] = num_visits + 1
-    return Visit_num(today = num_visits, total = num_visits)
+    return Visit_num(today=num_visits, total=num_visits)
