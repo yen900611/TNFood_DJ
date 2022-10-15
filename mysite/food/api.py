@@ -15,9 +15,10 @@ class Visit_num(Schema):
     total: int
 
 
-class Tags(Schema):
-    display: str
+class TagSchema(Schema):
+    name: str
     value: str
+    group: str
 
 
 class DeviceSchema(ModelSchema):
@@ -40,14 +41,15 @@ class PlacesSchema(Schema):
     web_site: str = "https://example.com"
     introduction: str = "店家資訊"
     pub_date: datetime.datetime
-    tag: list[Tags]
+    tag: list[TagSchema]
     devices = list[DeviceSchema]
 
 
-@api.get("tags", response=List[Tags])
+@api.get("tags", response=List[TagSchema])
 def tags(request):
-    tags = Tag.objects.all()
-    return [Tags(display=t.name, value=t.style) for t in tags]
+    # tags = Tag.objects.all()
+
+    return [TagSchema(group=t.get_group_display(), name=t.name, value=t.value) for t in Tag.objects.all()]
 
 
 # router = Router(auth=django_auth)
@@ -66,7 +68,7 @@ class BasicAuth(HttpBasicAuth):
 
 
 @api.post("tags", auth=BasicAuth())
-def add_tag(request, tags: Tags):
+def add_tag(request, tags: TagSchema):
     tag = Tag(name=tags.display, style=tags.value)
     tag.save()
     return tag.name
@@ -77,12 +79,12 @@ def add_tag(request, tags: Tags):
     response=List[PlacesSchema])
 def places(request, food_style: str = None):
     if food_style:
-        places = Place.objects.prefetch_related('photo_set', 'tag').filter(tag__style=food_style)
+        places = Place.objects.prefetch_related('photo_set', 'tag').filter(tag__value=food_style)
     else:
         places = Place.objects.prefetch_related('photo_set', 'tag').all()
     result = [PlacesSchema(
         **place.__dict__,
-        tag=[Tags(display=t.name, value=t.style) for t in place.tag.all()],
+        tag=[TagSchema(name=t.name, value=t.value,group=t.get_group_display()) for t in place.tag.all()],
         photos=[PhotoSchema(name=photo.name, path=photo.file.url) for photo in place.photo_set.all()]
     ) for place in places]
     return result
@@ -93,7 +95,7 @@ def get_place(request, id: int = 1):
     place = Place.objects.prefetch_related('photo_set', 'tag').get(id=id)
     result = PlacesSchema(
         **place.__dict__,
-        tag=[Tags(display=t.name, value=t.style) for t in place.tag.all()],
+        tag=[TagSchema(display=t.name, value=t.value) for t in place.tag.all()],
         photos=[PhotoSchema(name=photo.name, path=photo.file.url) for photo in place.photo_set.all()]
     )
     return result
@@ -103,4 +105,4 @@ def get_place(request, id: int = 1):
 def visit_number(request):
     num_visits = request.session.get('num_visits', 0)
     request.session['num_visits'] = num_visits + 1
-    return Visit_num(today = num_visits, total = num_visits)
+    return Visit_num(today=num_visits, total=num_visits)

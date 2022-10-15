@@ -17,9 +17,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.http import HttpResponse
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.urls import path, include
-
 from food.api import api
 
 
@@ -27,15 +26,17 @@ def index(request):
     return redirect('/food/')
 
 
-
+def about(request):
+    return render(request, 'food/about.html')
 
 
 urlpatterns = \
     [
         path('food-admin/', admin.site.urls),
         path('food/', include('food.urls')),
-        path("api/", api.urls),
 
+        path("api/", api.urls),
+        path('about/', about),
         path('', index)
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL,
                                                                                document_root=settings.STATIC_ROOT)

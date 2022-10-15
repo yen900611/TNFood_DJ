@@ -1,0 +1,77 @@
+{% extends 'food/base.html' %}
+{% load static %}
+
+{% block title %} 台南不需要米其林  關於我們 {% endblock %}
+{% block custom_style %}
+  <link rel="stylesheet" href="{% static 'food/css/index.css' %}">
+  {#  <link rel="stylesheet" href="{% static 'food/css/carousel.css' %}">#}
+  {#  <link rel="stylesheet" href="{% static 'food/css/reset.css' %}">#}
+
+{% endblock %}
+{% block main %}
+  <div class="container">
+
+    <div class="row mt-3">
+      <article class="markdown-body entry-content container-lg" itemprop="text">
+
+        <h2 dir="auto"><a id="user-content-關於我們" class="anchor" aria-hidden="true" href="#關於我們">
+          <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true">
+            <path fill-rule="evenodd"
+                  d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path>
+          </svg>
+        </a>關於我們
+        </h2>
+        <ul dir="auto">
+          <li>Ｑ：臺南哪間店最好吃？</li>
+          <li>Ａ：我家巷口那間最好吃。</li>
+        </ul>
+        <p dir="auto">2022
+          米其林首度將台南納入評鑑，沒有半間入選摘星，卻獲得廣大網友的認同。台南的美食，不需要米其林來認可，在地人更是避之唯恐不及，深怕巷口那間入選後，就變貴又買不到。</p>
+        <p dir="auto">台南是美食之都，筆者每到用餐時刻，面對密密麻麻的google Map
+          ，總是不知道該吃什麼比較好。想要快速篩選餐廳，或是推薦給親朋好友，需要花費很多心力，因此我們開發了這個網站，作為自己的美食地圖。</p>
+        <p dir="auto">這個網站是我們於 2022 iTHome 鐵人賽 挑戰30天內不間斷所完成的專案。 最終目標就是
+          <del>開發</del>
+          （整理）一個台南美食地圖，並協助筆者克服台南美食的選擇障礙（都太好吃了好難抉擇呀～）。 並從中增加自己的
+          <del>軟體專業技能</del>
+          （身體質量與幸福感）
+        </p>
+        <h2 dir="auto"><a id="user-content-introduction-in-english" class="anchor" aria-hidden="true"
+                          href="#introduction-in-english">
+          <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true">
+            <path fill-rule="evenodd"
+                  d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path>
+          </svg>
+        </a>Introduction in English
+        </h2>
+        <p dir="auto">Tainan is a city of food. We just don't know how to choose. So we develop this website to record
+          our delicious food store and provide the filter to choose which we should eat this meal.</p>
+        <blockquote>
+          <p dir="auto"><strong>台南不需要米其林</strong></p>
+          <ol dir="auto">
+            <li>
+              <g-emoji class="g-emoji" alias="house"
+                       fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f3e0.png">🏠
+              </g-emoji>
+              <a href="https://tnfood.pythonanywhere.com/food/" rel="nofollow">專案網址</a></li>
+            <li>
+              <g-emoji class="g-emoji" alias="technologist"
+                       fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f9d1-1f4bb.png">🧑‍💻
+              </g-emoji>
+              <a href="https://github.com/yen900611/TNFood_DJ">專案程式碼</a></li>
+            <li>
+              <g-emoji class="g-emoji" alias="file_folder"
+                       fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c1.png">📁
+              </g-emoji>
+              <a href="https://github.com/yen900611/TNFood">專案文件與鐵人賽文章</a></li>
+            <li>
+              <g-emoji class="g-emoji" alias="busts_in_silhouette"
+                       fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f465.png">👥
+              </g-emoji>
+              參賽團隊 <strong><strong><a href="https://ithelp.ithome.com.tw/2022ironman/signup/team/256"
+                                          rel="nofollow">台南巷弄美食獵人</a></strong></strong></li>
+          </ol>
+        </blockquote>
+      </article>
+    </div>
+  </div>
+{% endblock %}
