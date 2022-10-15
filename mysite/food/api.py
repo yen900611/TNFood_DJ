@@ -95,7 +95,7 @@ def get_place(request, id: int = 1):
     place = Place.objects.prefetch_related('photo_set', 'tag').get(id=id)
     result = PlacesSchema(
         **place.__dict__,
-        tag=[TagSchema(display=t.name, value=t.value) for t in place.tag.all()],
+        tag=[TagSchema(name=t.name, value=t.value,group=t.get_group_display()) for t in place.tag.all()],
         photos=[PhotoSchema(name=photo.name, path=photo.file.url) for photo in place.photo_set.all()]
     )
     return result
