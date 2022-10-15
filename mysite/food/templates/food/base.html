@@ -3,8 +3,33 @@
 <html>
 <head>
   <title>{% block title %}{% endblock %}</title>
+  <meta name="description"
+        content="台南是美食之都，筆者深受台南美食的囹圄，每到用餐時刻，面對密密麻麻的google Map ，總是不知道該吃什麼比較好。想要快速篩選餐廳，或是推薦給親朋好友，需要花費很多心力，因此我們開發了這個網站，作為自己的美食地圖。Tainan is a city of delicious food. We just don't know how to choose. So we develop this website to record our delicious food map and provide the filter to choose which we should eat this meal.">
   <meta charset="utf-8">
-  <meta name="google-site-verification" content="DUUCl867QgOuYBPy9R8nGUuyt7c818UWlgMNc2PzIP4" />
+  <meta name="google-site-verification" content="DUUCl867QgOuYBPy9R8nGUuyt7c818UWlgMNc2PzIP4"/>
+
+  {% block structured_data %}
+    <script type="application/ld+json">
+
+    {
+      "@context": "https://tnfood.pythonanywhere.com/food/",
+      "@type": "NewsArticle",
+      "headline": "台南不需要米其林",
+      "image": [],
+      "datePublished": "2022-10-15T12:00:00+08:00",
+      "dateModified": "2022-10-15T20:00:00+08:00",
+      "author": [{
+          "@type": "Person",
+          "name": "Shoa-Ting Yen",
+          "url": "https://github.com/yen900611"
+        },{
+          "@type": "Person",
+          "name": "Chi-Lin Chen",
+          "url": "https://github.com/kylingithub"
+      }]
+    }
+    </script>
+  {% endblock %}
   {% block style %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
