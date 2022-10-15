@@ -1,5 +1,9 @@
 # 台南不需要米其林 TNFood
+![TNFood](https://img.shields.io/github/v/tag/yen900611/TNFood_DJ)
+![TNFood](https://img.shields.io/github/downloads/yen900611/TNFood_DJ/total)
 
+[![Python 3.9](https://img.shields.io/badge/python->3.9-blue.svg)](https://www.python.org/downloads/release/python-390/)
+[![Django](https://img.shields.io/badge/Django>=3.2-blue.svg)](https://pypi.org/project/Django/)
 ## 關於我們
 
 - Ｑ：臺南哪間店最好吃？
