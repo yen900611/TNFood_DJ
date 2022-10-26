@@ -36,9 +36,11 @@ class Place(models.Model):
     phone_number = models.CharField(max_length=20, default="No phone number")
     web_site = models.CharField(max_length=200, default="No web site")
     introduction = models.CharField(max_length=100, default="不用問去吃就對了")
-    pub_date = models.DateField('date published', auto_now=True)
+    # pub_date = models.DateTimeField('date published', auto_now=True)
     tag = models.ManyToManyField(Tag, blank=True)
     devices = models.ManyToManyField(Device, blank=True)
+    created_at = models.DateField(auto_now_add=True)
+    updated_at = models.DateField(auto_now=True)
 
     def __str__(self):
         return self.name
