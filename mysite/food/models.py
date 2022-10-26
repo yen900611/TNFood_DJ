@@ -1,3 +1,6 @@
+import datetime
+from datetime import date
+
 from django.core.exceptions import ValidationError
 from django.db import models
 from django_resized import ResizedImageField
@@ -19,7 +22,6 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
-
 class Device(models.Model):
     name = models.CharField(max_length=20)
 
@@ -33,7 +35,7 @@ class Place(models.Model):
     phone_number = models.CharField(max_length=20, default="No phone number")
     web_site = models.CharField(max_length=200, default="No web site")
     introduction = models.CharField(max_length=100, default="不用問去吃就對了")
-    pub_date = models.DateTimeField('date published')
+    pub_date = models.DateField('date published', default=datetime.date.today())
     tag = models.ManyToManyField(Tag, blank=True)
     devices = models.ManyToManyField(Device, blank=True)
 
