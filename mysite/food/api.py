@@ -40,7 +40,7 @@ class PlacesSchema(Schema):
     photos: Optional[list[PhotoSchema]]
     web_site: str = "https://example.com"
     introduction: str = "店家資訊"
-    pub_date: datetime.datetime
+    updated_at: datetime.date
     tag: list[TagSchema]
     devices = list[DeviceSchema]
 

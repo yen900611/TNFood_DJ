@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.contrib.admin import ModelAdmin
+from django.contrib.sessions.models import Session
 
 from .models import Photo, Place, Tag, Device, Device_Management
 
@@ -8,12 +10,12 @@ class PhotoInlineAdmin(admin.TabularInline):
 
 
 class PlaceAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'address', 'web_site', 'pub_date')
+    list_display = ('id', 'name', 'address', 'web_site', 'updated_at','created_at')
     list_editable = ('name', 'address', 'web_site')
-    list_filter = ('pub_date', 'tag')
+    list_filter = ('updated_at', 'tag')
     search_fields = ('name', 'address', 'web_site')
     ordering = ('-id',)
-    readonly_fields = ('pub_date',)
+    readonly_fields = ('updated_at','created_at')
     inlines = [PhotoInlineAdmin]
     filter_horizontal = ('tag', 'devices',)
 
@@ -28,6 +30,11 @@ class TagAdmin(admin.ModelAdmin):
     # inlines = [ PhotoInlineAdmin]
     # filter_horizontal = ('tag','devices',)
 
+class SessionAdmin(ModelAdmin):
+    def _session_data(self, obj):
+        return obj.get_decoded()
+    list_display = ['session_key', '_session_data', 'expire_date']
+admin.site.register(Session, SessionAdmin)
 
 admin.site.register(Place, PlaceAdmin)
 admin.site.register(Photo, admin.ModelAdmin)
