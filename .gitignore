@@ -4,7 +4,7 @@
 *.pyc
 __pycache__
 mysite/db.sqlite3
-media/*
+*/media/*
 mysite/static/
 tmp/
 # Backup files # 

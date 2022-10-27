@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'food',
     'corsheaders',
+    'django.contrib.sitemaps'
 ]
 
 MIDDLEWARE = [

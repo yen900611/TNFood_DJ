@@ -30,13 +30,15 @@ def about(request):
     return render(request, 'food/about.html')
 
 
+# from django.contrib.sitemaps.views import sitemap
+
 urlpatterns = \
     [
         path('food-admin/', admin.site.urls),
         path('food/', include('food.urls')),
-
         path("api/", api.urls),
         path('about/', about),
-        path('', index)
+        path('', index),
+        # path('sitemap.xml', sitemap, {'sitemaps': sitemap}, name='django.contrib.sitemaps.views.sitemap')
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL,
                                                                                document_root=settings.STATIC_ROOT)

@@ -25,3 +25,7 @@ Tainan is a city of food. We just don't know how to choose. So we develop this w
 > 2. 🧑‍💻[專案程式碼](https://github.com/yen900611/TNFood_DJ) 
 > 3. 📁[專案文件與鐵人賽文章](https://github.com/yen900611/TNFood)
 > 4. 👥參賽團隊 ****[台南巷弄美食獵人](https://ithelp.ithome.com.tw/2022ironman/signup/team/256)****
+
+# ToDo
+- [ ] 增加 sitemap 
+  - https://docs.djangoproject.com/en/3.2/ref/contrib/sitemaps/
